@@ -1,4 +1,6 @@
 <%= render "shared/page_title", title:"AllRecipe" %>
+
+<%= will_paginate %>
 <% @recipes.each do |recipe| %>
     <div class="row">
       <div class="col-md-2">
@@ -9,19 +11,31 @@
         </seletion>
       </div>
       
-      <div class="col-md-8 well">
+      <div class="col-md-6 well">
         <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
         <p><%= recipe.summary %></p>
         <p><%= recipe.description %></p>
         <p>
-          <span class="quiet">
-            <small>
-              <%= time_ago_in_words(recipe.created_at) %>
-            </small>
-          </span>
+          <span class="quiet"><small>Create: <%= time_ago_in_words(recipe.created_at) %> ago,</small></span>
+           <span class="quiet"><small>Update: <%= time_ago_in_words(recipe.updated_at) %> ago</small></span>
         </p>
+        
+        <div class="pull-right">
+        <%= link_to like_recipe_path(recipe, like: true), method: :post do %>
+          <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= recipe.thumbs_up_total %>
+        <% end %>&nbsp&nbsp&nbsp&nbsp
+        <%= link_to like_recipe_path(recipe, like: false), method: :post do %>
+          <i class="glyphicon glyphicon-thumbs-down"></i> &nbsp <%= recipe.thumbs_down_total %>
+        <% end %>
+      </div>
+      </div>
+      <div class="col-md-4">
+        
+        <%= image_tag(recipe.picture.url, size: "250x150", class: "gravatar") if recipe.picture? %>
+        
       </div>
     </div>
 <hr/>
 <%end%>
 <h5><%= link_to "Return to home",home_path, class:"btn btn-warning btn-small" %></h5>
+<%= will_paginate %>
