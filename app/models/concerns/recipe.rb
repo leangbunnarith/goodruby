@@ -1,7 +1,15 @@
 class Recipe < ActiveRecord::Base
   
+  #table chef
   belongs_to:chef
+  #table like
   has_many:likes
+  #table recipestyle and style
+  has_many:recipe_styles
+  has_many:styles, through: :recipe_styles
+  # table recipe_ingredient and ingredient
+  has_many:recipe_ingredients
+  has_many:ingredients, through: :recipe_ingredients
   validates:chef_id,presence:true
   validates:name,presence:true
   validates:summary,presence:true

@@ -57,6 +57,7 @@ class ChefsController <ApplicationController
         @chef = Chef.find(params[:id])
         
     end
+    
     def require_same_user
         if current_user != @chef
             flash[:danger] = "you can only edit your oun profile"
