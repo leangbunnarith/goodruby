@@ -1,0 +1,17 @@
+<div class="row">
+   <div class="well col-md-8 col-md-offset-2">
+      <%= form_for @blog do |f| %>
+         <%= f.label :title %>
+         <%= f.text_field :title, class: 'form-control' %>
+         <%= f.label :topic %>
+         <%= f.text_field :topic, class: 'form-control' %>
+        
+         <%= f.text_area :description, data: { provide: "markdown"}, class: 'form-control' %>
+         <span class="picture">
+            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+         </span>
+         <%= f.submit(@blog.new_record? ? 'Create Blog' : 'update Blog', class:"btn btn-success") %>
+           
+      <%end%>
+   </div>
+</div> 

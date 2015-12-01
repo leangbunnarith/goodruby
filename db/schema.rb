@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114031605) do
+ActiveRecord::Schema.define(version: 20151201034458) do
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "title"
+    t.text   "topic"
+    t.text   "description"
+    t.string "picture"
+  end
 
   create_table "chefs", force: :cascade do |t|
     t.string   "chefname"
@@ -19,6 +26,7 @@ ActiveRecord::Schema.define(version: 20151114031605) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.boolean  "admin",           default: false
   end
 
   create_table "ingredients", force: :cascade do |t|
